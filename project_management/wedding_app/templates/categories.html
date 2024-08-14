@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<style>
+    .categories-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .category-box {
+        background-color: #ffffff;
+        border: 2px solid #ffb3b3;
+        border-radius: 10px;
+        padding: 20px;
+        width: 200px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .category-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-box a {
+        text-decoration: none;
+        color: #ff4081;
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+
+    .category-box a:hover {
+        color: #ff1a75;
+    }
+
+    .view-orders {
+        display: inline-block;
+        margin: 20px 0;
+        padding: 10px 20px;
+        background-color: #ff4081;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .view-orders:hover {
+        background-color: #e73370;
+    }
+
+    .categories-title {
+        text-align: center;
+        font-size: 2em;
+        margin: 20px 0;
+        color: #ff4081;
+    }
+</style>
+    <h2 class="categories-title">Categories</h2>
+    <div class="categories-container">
+    {% for category in categories %}
+    <div class="category-box">
+        <a href="{% url 'category_items' category.id %}">{{ category.name }}</a><br>
+    </div>
+    {% endfor %}
+</div>
+<div style="text-align: center;">
+    <br>
+    <a href="{% url 'view_orders' %}" class="view-orders">View Order</a>
+</div>
+{% endblock %}
